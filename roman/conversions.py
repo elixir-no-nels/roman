@@ -12,9 +12,9 @@ def decimal_to_roman(decimal: int) -> str:
             roman, remainder = append_letter(roman, remainder, roman_base, subtract)
 
         if roman_base > 1:
-            next_decimal_base = calc_next_decimal_base(roman_base)
-            if remainder >= roman_base - next_decimal_base:
-                roman, remainder = append_letter(roman, remainder, next_decimal_base, add)
+            next_smaller_decimal_base = calc_next_smaller_decimal_base(roman_base)
+            if remainder >= roman_base - next_smaller_decimal_base:
+                roman, remainder = append_letter(roman, remainder, next_smaller_decimal_base, add)
                 roman, remainder = append_letter(roman, remainder, roman_base, subtract)
 
     return roman
@@ -28,7 +28,7 @@ def subtract(x, y):
     return x - y
 
 
-def calc_next_decimal_base(roman_base):
+def calc_next_smaller_decimal_base(roman_base):
     return 10**math.floor(math.log10(roman_base - 1))
 
 
